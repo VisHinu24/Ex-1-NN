@@ -1,8 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
-<H3>EX. NO.1</H3>
-<H3>DATE</H3>
-<H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
+<H3>Vishinu H</H3>
+<H3>212223220124</H3>
+<H3>EX-NO : 1</H3>
+<H1> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
 
@@ -37,11 +36,69 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
 
+data = pd.read_csv("Churn_Modelling.csv")
+X=data.iloc[:,:-1].values
+y=data.iloc[:,-1].values
+
+data.info()
+
+print("Missing Values: \n ",data.isnull().sum())
+
+print("Duplicate values:\n ")
+print(data.duplicated())
+
+data.describe()
+
+data = data.drop(['Surname', 'Geography','Gender'], axis=1)
+
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print("Normalized data \n" , df1)
+
+X = data.drop('Exited', axis=1)  
+y = data['Exited'] 
+
+X_train ,X_test ,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=42)
+print("Training data")
+print(X_train)
+print(y_train)
+
+print("Testing data")
+print(X_test)
+print(y_test)
+print("Length of X_test: ", len(X_test))
+
+
+```
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+
+## data.info()
+![image](https://github.com/user-attachments/assets/6e6df7e2-8890-40c2-a10e-04c26051c330)
+
+## Missing values
+![image](https://github.com/user-attachments/assets/b524e626-bede-4d2d-8c0b-8ac6794ed807)
+
+## Duplicate values
+![image](https://github.com/user-attachments/assets/a5ca3da8-fd56-47e6-8a34-a0fa6cb7a769)
+
+## Normalized dataset
+![image](https://github.com/user-attachments/assets/700d9f65-8c3f-4821-b1f2-b4c2c47e9239)
+
+## Training values of X and Y
+![image](https://github.com/user-attachments/assets/35796089-ba57-4b96-88a4-5c47930269e2)
+
+## Testing values of X and Y
+![image](https://github.com/user-attachments/assets/d659ebb6-c6c6-4d01-8db6-5049a0be4fe7)
+
+
 
 
 ## RESULT:
